@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroMail — Privacy Policy</title>
+    <link rel="icon" type="image/png" href="neuromail-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-deep: #06060f;
+            --bg-body: #0a0a18;
+            --bg-card: #111125;
+            --bg-card-hover: #17172e;
+            --border: rgba(99, 102, 241, 0.12);
+            --accent: #6366f1;
+            --accent-cyan: #67e8f9;
+            --text-primary: #e8e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* — Atmospheric background — */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 600px 400px at 20% 10%, rgba(99, 102, 241, 0.06), transparent),
+                radial-gradient(ellipse 500px 500px at 80% 80%, rgba(103, 232, 249, 0.04), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* — Dot grid texture — */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* — Header — */
+        .pp-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(6, 6, 15, 0.8);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .pp-header-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .pp-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+        }
+
+        .pp-brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pp-header-tag {
+            margin-left: auto;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* — Hero — */
+        .pp-hero {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 80px 32px 40px;
+            text-align: center;
+        }
+
+        .pp-hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .pp-hero h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pp-hero .pp-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto 24px;
+        }
+
+        .pp-effective {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 6px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+        }
+
+        /* — Content — */
+        .pp-content {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px 32px 100px;
+        }
+
+        /* — Table of Contents — */
+        .pp-toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+        }
+
+        .pp-toc-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .pp-toc ol {
+            list-style: none;
+            counter-reset: toc;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 32px;
+        }
+
+        .pp-toc li {
+            counter-increment: toc;
+        }
+
+        .pp-toc li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .pp-toc li a::before {
+            content: counter(toc, decimal-leading-zero);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--accent);
+            opacity: 0.5;
+            min-width: 22px;
+        }
+
+        .pp-toc li a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* — Sections — */
+        .pp-section {
+            margin-bottom: 48px;
+        }
+
+        .pp-section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pp-section h2 .pp-num {
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: rgba(99, 102, 241, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .pp-section h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 20px 0 10px;
+        }
+
+        .pp-section p {
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+
+        .pp-section ul, .pp-section ol {
+            color: var(--text-secondary);
+            margin: 0 0 14px 20px;
+            font-size: 0.95rem;
+        }
+
+        .pp-section li {
+            margin-bottom: 6px;
+        }
+
+        .pp-section li::marker {
+            color: var(--accent);
+        }
+
+        /* — Highlight card — */
+        .pp-highlight {
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 18px 0;
+        }
+
+        .pp-highlight.green {
+            background: rgba(34, 197, 94, 0.06);
+            border-color: rgba(34, 197, 94, 0.15);
+        }
+
+        .pp-highlight p {
+            margin-bottom: 0;
+        }
+
+        .pp-highlight strong {
+            color: var(--text-primary);
+        }
+
+        /* — Scope table — */
+        .pp-scope-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        .pp-scope-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pp-scope-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        .pp-scope-table tr:last-child td { border-bottom: none; }
+
+        .pp-scope-table code {
+            font-size: 0.82rem;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--accent-cyan);
+            white-space: nowrap;
+        }
+
+        /* — Footer — */
+        .pp-footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        .pp-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .pp-footer a:hover { text-decoration: underline; }
+
+        /* — Responsive — */
+        @media (max-width: 640px) {
+            .pp-hero { padding: 60px 20px 30px; }
+            .pp-content { padding: 20px 20px 80px; }
+            .pp-toc ol { grid-template-columns: 1fr; }
+            .pp-header-inner { padding: 0 20px; }
+            .pp-header-tag { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="pp-header">
+        <div class="pp-header-inner">
+            <img src="neuromail-logo.png" alt="NeuroMail" class="pp-logo">
+            <span class="pp-brand">NeuroMail</span>
+            <span class="pp-header-tag">Legal</span>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pp-hero">
+        <h1>Privacy <span>Policy</span></h1>
+        <p class="pp-subtitle">NeuroMail is built on a simple principle: your email data never leaves your computer. Here's exactly how we handle your information.</p>
+        <span class="pp-effective">Effective: April 2, 2026</span>
+    </section>
+
+    <!-- Content -->
+    <main class="pp-content">
+
+        <!-- Table of Contents -->
+        <nav class="pp-toc">
+            <div class="pp-toc-title">Contents</div>
+            <ol>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#data-collected">Data We Access</a></li>
+                <li><a href="#google-scopes">Google API Scopes</a></li>
+                <li><a href="#outlook">Microsoft Outlook Data</a></li>
+                <li><a href="#local-processing">Local-Only Processing</a></li>
+                <li><a href="#storage">Data Storage &amp; Encryption</a></li>
+                <li><a href="#no-sharing">No Data Sharing</a></li>
+                <li><a href="#ai-processing">AI &amp; Machine Learning</a></li>
+                <li><a href="#license">Licensing System</a></li>
+                <li><a href="#your-rights">Your Rights &amp; Data Deletion</a></li>
+                <li><a href="#children">Children's Privacy</a></li>
+                <li><a href="#changes">Policy Changes</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Overview -->
+        <section class="pp-section" id="overview">
+            <h2><span class="pp-num">01</span> Overview</h2>
+            <p>NeuroMail is a desktop email productivity application that uses on-device artificial intelligence to help you manage your inbox. The application runs entirely on your local computer.</p>
+            <div class="pp-highlight green">
+                <p><strong>Core Privacy Guarantee:</strong> NeuroMail processes all email data locally on your device. Your emails, contacts, drafts, and AI-generated content are never transmitted to, stored on, or accessible by any external server, cloud service, or third party — including us.</p>
+            </div>
+        </section>
+
+        <!-- 2. Data We Access -->
+        <section class="pp-section" id="data-collected">
+            <h2><span class="pp-num">02</span> Data We Access</h2>
+            <p>When you connect your email account, NeuroMail accesses the following data through official APIs provided by Google and Microsoft:</p>
+            <ul>
+                <li><strong>Email messages</strong> — subject lines, sender/recipient addresses, body content, timestamps, and thread structure</li>
+                <li><strong>Email labels and folders</strong> — your existing organizational structure</li>
+                <li><strong>Contact information</strong> — names, email addresses, and phone numbers extracted from email signatures using on-device NLP</li>
+                <li><strong>Draft emails</strong> — for reading and creating draft responses</li>
+            </ul>
+            <p>All accessed data is processed and stored exclusively on your local machine. No email content is ever transmitted externally.</p>
+        </section>
+
+        <!-- 3. Google API Scopes -->
+        <section class="pp-section" id="google-scopes">
+            <h2><span class="pp-num">03</span> Google API Scopes</h2>
+            <p>NeuroMail requests the following Google OAuth 2.0 scopes to provide its features. Each scope is used for a specific, limited purpose:</p>
+            <table class="pp-scope-table">
+                <thead>
+                    <tr>
+                        <th>Scope</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>gmail.readonly</code></td>
+                        <td>Read your emails to analyze content, suggest labels, detect follow-ups requiring attention, and extract contact information from signatures — all processed locally on your device.</td>
+                    </tr>
+                    <tr>
+                        <td><code>gmail.send</code></td>
+                        <td>Send emails on your behalf only when you explicitly approve a draft reply, follow-up message, or bulk email campaign from within the application.</td>
+                    </tr>
+                    <tr>
+                        <td><code>gmail.modify</code></td>
+                        <td>Apply label changes to your emails when you approve AI-suggested labels, and manage draft states within your mailbox.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pp-highlight">
+                <p><strong>Limited Use Disclosure:</strong> NeuroMail's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+            </div>
+        </section>
+
+        <!-- 4. Microsoft Outlook -->
+        <section class="pp-section" id="outlook">
+            <h2><span class="pp-num">04</span> Microsoft Outlook Data</h2>
+            <p>For Microsoft Outlook accounts, NeuroMail accesses your email data through the Microsoft Graph API using the following permissions:</p>
+            <ul>
+                <li><strong>Mail.ReadWrite</strong> — Read emails for analysis and create/modify drafts</li>
+                <li><strong>Mail.Send</strong> — Send approved replies and bulk emails</li>
+                <li><strong>User.Read</strong> — Retrieve your account profile information for display</li>
+            </ul>
+            <p>The same local-only processing guarantee applies to all Outlook data.</p>
+        </section>
+
+        <!-- 5. Local-Only Processing -->
+        <section class="pp-section" id="local-processing">
+            <h2><span class="pp-num">05</span> Local-Only Processing</h2>
+            <p>NeuroMail is architecturally designed to keep all data processing on your device:</p>
+            <ul>
+                <li><strong>AI models run locally</strong> — The language model (Phi-3.5 Mini) runs entirely on your CPU or GPU. No cloud AI services (OpenAI, Google AI, etc.) are used.</li>
+                <li><strong>NLP processing is local</strong> — Contact extraction, email classification, and reply analysis use on-device libraries (spaCy, sentence-transformers).</li>
+                <li><strong>No telemetry</strong> — NeuroMail does not collect usage analytics, crash reports, or behavioral data.</li>
+                <li><strong>No external API calls for email processing</strong> — The only network requests are: (1) authenticating with Gmail/Outlook via official OAuth, (2) fetching and sending emails through official APIs, and (3) license validation with our license server.</li>
+            </ul>
+        </section>
+
+        <!-- 6. Storage & Encryption -->
+        <section class="pp-section" id="storage">
+            <h2><span class="pp-num">06</span> Data Storage &amp; Encryption</h2>
+            <p>All application data is stored locally on your computer:</p>
+            <ul>
+                <li><strong>Database</strong> — SQLite databases stored in the application's local data directory, one per email account</li>
+                <li><strong>Authentication tokens</strong> — OAuth refresh tokens stored locally, encrypted with AES-256-GCM</li>
+                <li><strong>AI model files</strong> — Stored locally in the application directory (~2.4 GB)</li>
+                <li><strong>License data</strong> — License key and activation status stored locally using encrypted storage</li>
+            </ul>
+            <p>No data is stored on any remote server controlled by NeuroMail, with the sole exception of license activation records (see Section 9).</p>
+        </section>
+
+        <!-- 7. No Data Sharing -->
+        <section class="pp-section" id="no-sharing">
+            <h2><span class="pp-num">07</span> No Data Sharing</h2>
+            <div class="pp-highlight green">
+                <p><strong>We do not sell, share, transfer, or disclose your email data, contacts, drafts, or any AI-processed content to any third party — ever.</strong> This includes advertising networks, data brokers, analytics providers, and affiliated companies.</p>
+            </div>
+            <p>The only data that leaves your device is:</p>
+            <ol>
+                <li>Emails you explicitly choose to send (via Gmail/Outlook's official send APIs)</li>
+                <li>Label changes you explicitly approve (via Gmail/Outlook's official modify APIs)</li>
+                <li>A license key validation request containing only your license key and a machine identifier (no email content)</li>
+            </ol>
+        </section>
+
+        <!-- 8. AI & ML -->
+        <section class="pp-section" id="ai-processing">
+            <h2><span class="pp-num">08</span> AI &amp; Machine Learning</h2>
+            <p>NeuroMail uses artificial intelligence for:</p>
+            <ul>
+                <li><strong>Label suggestions</strong> — Analyzing email content to recommend organizational labels</li>
+                <li><strong>Draft generation</strong> — Creating reply drafts that match your writing tone and style</li>
+                <li><strong>Follow-up detection</strong> — Identifying sent emails that haven't received a response</li>
+                <li><strong>Contact extraction</strong> — Parsing email signatures for names, emails, and phone numbers</li>
+                <li><strong>Reply decision</strong> — Determining which emails warrant a response</li>
+            </ul>
+            <p>All AI models are open-source, run locally on your hardware, and are never fine-tuned on or transmit your data to external services. The training feature in NeuroMail adapts the model's behavior using your local feedback — this training data stays on your machine.</p>
+        </section>
+
+        <!-- 9. Licensing -->
+        <section class="pp-section" id="license">
+            <h2><span class="pp-num">09</span> Licensing System</h2>
+            <p>NeuroMail uses an online license activation system. The following minimal data is exchanged with our license server:</p>
+            <ul>
+                <li><strong>License key</strong> — Your purchased license key</li>
+                <li><strong>Machine identifier</strong> — A hardware-derived ID used to bind the license to your device</li>
+                <li><strong>Activation status</strong> — Whether the license is active, expired, or in trial</li>
+            </ul>
+            <p>The license server does <strong>not</strong> receive or have access to any email content, contacts, drafts, AI-generated text, or any other application data. License validation occurs once every 24 hours, with a 7-day offline grace period.</p>
+        </section>
+
+        <!-- 10. Your Rights -->
+        <section class="pp-section" id="your-rights">
+            <h2><span class="pp-num">10</span> Your Rights &amp; Data Deletion</h2>
+            <p>Because all data is stored locally on your device, you have full control:</p>
+            <ul>
+                <li><strong>View your data</strong> — All data is in SQLite databases accessible on your machine</li>
+                <li><strong>Delete your data</strong> — Uninstalling NeuroMail removes all application data, databases, AI models, and cached tokens from your device</li>
+                <li><strong>Revoke access</strong> — You can revoke NeuroMail's access to your Gmail account at any time via <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Google Account Permissions</a>, or revoke Outlook access via <a href="https://account.microsoft.com/privacy" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Microsoft Privacy Dashboard</a></li>
+                <li><strong>Disconnect accounts</strong> — Remove any connected email account from within NeuroMail's settings</li>
+                <li><strong>Deactivate license</strong> — Deactivate your license key to transfer it to a different machine</li>
+            </ul>
+        </section>
+
+        <!-- 11. Children -->
+        <section class="pp-section" id="children">
+            <h2><span class="pp-num">11</span> Children's Privacy</h2>
+            <p>NeuroMail is not intended for use by individuals under the age of 16. We do not knowingly process data from children.</p>
+        </section>
+
+        <!-- 12. Changes -->
+        <section class="pp-section" id="changes">
+            <h2><span class="pp-num">12</span> Policy Changes</h2>
+            <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated effective date. Continued use of NeuroMail after changes constitutes acceptance of the updated policy.</p>
+        </section>
+
+        <!-- 13. Contact -->
+        <section class="pp-section" id="contact">
+            <h2><span class="pp-num">13</span> Contact Us</h2>
+            <p>If you have questions about this privacy policy or NeuroMail's data practices, please contact us:</p>
+            <ul>
+                <li><strong>Email</strong>: <a href="mailto:support.neuromail@gmail.com" style="color: var(--accent-cyan);">support.neuromail@gmail.com</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="pp-footer">
+        <p>&copy; 2026 NeuroMail. All rights reserved. &nbsp;|&nbsp; <a href="#">Back to top</a></p>
+        <p style="margin-top: 6px; font-size: 0.75rem;">Train Your Inbox.</p>
+    </footer>
+
+</body>
+</html>
