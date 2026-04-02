@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroMail — Terms of Service</title>
+    <link rel="icon" type="image/png" href="neuromail-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-deep: #06060f;
+            --bg-body: #0a0a18;
+            --bg-card: #111125;
+            --border: rgba(99, 102, 241, 0.12);
+            --accent: #6366f1;
+            --accent-cyan: #67e8f9;
+            --text-primary: #e8e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 600px 400px at 20% 10%, rgba(99, 102, 241, 0.06), transparent),
+                radial-gradient(ellipse 500px 500px at 80% 80%, rgba(103, 232, 249, 0.04), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .pp-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(6, 6, 15, 0.8);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .pp-header-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .pp-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+        }
+
+        .pp-brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .pp-header-tag {
+            margin-left: auto;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .pp-hero {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 80px 32px 40px;
+            text-align: center;
+        }
+
+        .pp-hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .pp-hero h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pp-hero .pp-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto 24px;
+        }
+
+        .pp-effective {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 6px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+        }
+
+        .pp-content {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px 32px 100px;
+        }
+
+        .pp-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .pp-section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pp-section h2 .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(99, 102, 241, 0.12);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pp-section p, .pp-section li {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.75;
+        }
+
+        .pp-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .pp-section li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+
+        .pp-section li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .pp-section a {
+            color: var(--accent-cyan);
+            text-decoration: underline;
+        }
+
+        .pp-footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid var(--border);
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .pp-footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .pp-footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .pp-footer-links a:hover { color: var(--accent); }
+
+        .pp-footer-copy {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        @media (max-width: 600px) {
+            .pp-hero { padding: 60px 20px 30px; }
+            .pp-content { padding: 20px 16px 80px; }
+            .pp-section { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="pp-header">
+        <div class="pp-header-inner">
+            <img src="neuromail-logo.png" alt="NeuroMail" class="pp-logo">
+            <a href="index.html" class="pp-brand">NeuroMail</a>
+            <span class="pp-header-tag">Terms of Service</span>
+        </div>
+    </header>
+
+    <div class="pp-hero">
+        <h1><span>Terms of Service</span></h1>
+        <p class="pp-subtitle">Please read these terms carefully before using NeuroMail. By installing or using the application, you agree to be bound by these terms.</p>
+        <span class="pp-effective">Effective: April 2, 2026</span>
+    </div>
+
+    <div class="pp-content">
+
+        <div class="pp-section">
+            <h2><span class="num">1</span> Acceptance of Terms</h2>
+            <p>By downloading, installing, or using NeuroMail ("the Software"), you agree to these Terms of Service. If you do not agree, do not use the Software. These terms constitute a legally binding agreement between you ("User") and NeuroMail ("we", "us", "our").</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">2</span> Description of Service</h2>
+            <p>NeuroMail is a desktop email assistant application for Windows that provides:</p>
+            <ul>
+                <li>AI-powered email labeling and categorization</li>
+                <li>Automated reply draft generation</li>
+                <li>Follow-up detection and tracking</li>
+                <li>Contact information extraction from email signatures</li>
+                <li>Bulk email composition and sending</li>
+                <li>Local AI model training for personalized suggestions</li>
+            </ul>
+            <p>All AI processing occurs locally on your device. NeuroMail does not operate cloud-based AI services.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">3</span> License</h2>
+            <p>Subject to your compliance with these terms, we grant you a limited, non-exclusive, non-transferable, revocable license to install and use the Software on devices you own or control. This license is for personal or internal business use only.</p>
+            <p style="margin-top: 12px;">You may not:</p>
+            <ul>
+                <li>Copy, modify, distribute, sell, or lease any part of the Software</li>
+                <li>Reverse engineer or attempt to extract the source code</li>
+                <li>Remove, alter, or obscure any proprietary notices</li>
+                <li>Use the Software for any unlawful purpose</li>
+                <li>Sublicense, rent, or lend the Software to third parties</li>
+            </ul>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">4</span> License Keys &amp; Activation</h2>
+            <p>Certain features require a valid license key. License keys are bound to a single machine and are non-transferable unless explicitly authorized. Tampering with, sharing, or circumventing the license system is a violation of these terms and may result in revocation of your license.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">5</span> Email Account Access</h2>
+            <p>NeuroMail connects to your Gmail or Microsoft Outlook account using OAuth 2.0 authentication. By granting access, you authorize NeuroMail to:</p>
+            <ul>
+                <li>Read your email messages for labeling, drafting, and follow-up detection</li>
+                <li>Create draft replies in your email account</li>
+                <li>Send emails on your behalf (bulk mailer feature, when explicitly initiated by you)</li>
+                <li>Read email metadata (headers, subjects, sender information)</li>
+            </ul>
+            <p style="margin-top: 12px;">You may revoke access at any time through your Google or Microsoft account settings. NeuroMail processes emails locally and does not transmit email content to external servers.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">6</span> User Responsibilities</h2>
+            <p>You are responsible for:</p>
+            <ul>
+                <li>Maintaining the security of your device and email account credentials</li>
+                <li>Reviewing AI-generated drafts and labels before applying them</li>
+                <li>Ensuring that bulk emails sent through NeuroMail comply with applicable anti-spam laws (CAN-SPAM, GDPR, etc.)</li>
+                <li>Backing up your data as needed</li>
+                <li>Using the Software in compliance with all applicable local, national, and international laws</li>
+            </ul>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">7</span> AI-Generated Content</h2>
+            <p>NeuroMail uses local AI models to generate email labels, draft replies, and follow-up suggestions. These are suggestions only. We do not guarantee the accuracy, appropriateness, or completeness of AI-generated content. You are solely responsible for reviewing and approving any content before it is sent or applied to your email account.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">8</span> Data &amp; Privacy</h2>
+            <p>Your privacy is fundamental to NeuroMail. All data processing occurs on your local device. We do not collect, store, or transmit your emails, contacts, or personal data to any server. For complete details, please review our <a href="privacy.html">Privacy Policy</a>.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">9</span> Intellectual Property</h2>
+            <p>The Software, including its code, design, AI models, branding, and documentation, is owned by NeuroMail and protected by intellectual property laws. These terms do not grant you any rights to our trademarks, logos, or brand assets except as required to use the Software.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">10</span> Disclaimer of Warranties</h2>
+            <p>THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SOFTWARE WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF HARMFUL COMPONENTS.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">11</span> Limitation of Liability</h2>
+            <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, NEUROMAIL SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SOFTWARE, INCLUDING BUT NOT LIMITED TO LOSS OF DATA, LOSS OF REVENUE, OR EMAIL DELIVERY FAILURES. OUR TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID FOR THE SOFTWARE LICENSE.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">12</span> Termination</h2>
+            <p>We may terminate or suspend your license at any time if you violate these terms. Upon termination, you must uninstall the Software and delete all copies. Sections regarding disclaimers, limitation of liability, and intellectual property survive termination.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">13</span> Changes to Terms</h2>
+            <p>We may update these terms from time to time. Continued use of NeuroMail after changes constitutes acceptance of the revised terms. We will indicate the effective date at the top of this page.</p>
+        </div>
+
+        <div class="pp-section">
+            <h2><span class="num">14</span> Contact</h2>
+            <p>If you have questions about these Terms of Service, contact us at:</p>
+            <p style="margin-top: 8px; color: var(--accent-cyan); font-weight: 500;">support.neuromail@gmail.com</p>
+        </div>
+
+    </div>
+
+    <div class="pp-footer">
+        <div class="pp-footer-links">
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="mailto:support.neuromail@gmail.com">Contact</a>
+        </div>
+        <p class="pp-footer-copy">&copy; 2026 NeuroMail. Train Your Inbox.</p>
+    </div>
+
+</body>
+</html>
