@@ -3,567 +3,822 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroMail — Privacy Policy</title>
+    <title>NeuroMail — Train Your Inbox</title>
+    <meta name="description" content="AI-powered email assistant that runs entirely on your device. Smart labels, draft generation, follow-up detection, and contact extraction — all offline, all private.">
     <link rel="icon" type="image/png" href="neuromail-logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-            --bg-deep: #06060f;
-            --bg-body: #0a0a18;
-            --bg-card: #111125;
-            --bg-card-hover: #17172e;
-            --border: rgba(99, 102, 241, 0.12);
+            --bg: #06060f;
+            --bg-card: #0c0c1d;
             --accent: #6366f1;
-            --accent-cyan: #67e8f9;
-            --text-primary: #e8e8f0;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
+            --cyan: #67e8f9;
+            --text: #e8e8f0;
+            --muted: #64748b;
+            --subtle: #94a3b8;
+            --border: rgba(99,102,241,0.12);
+            --glow: rgba(99,102,241,0.15);
         }
-
         html { scroll-behavior: smooth; }
-
         body {
-            font-family: 'DM Sans', -apple-system, sans-serif;
-            background: var(--bg-deep);
-            color: var(--text-primary);
-            line-height: 1.7;
-            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        /* — Atmospheric background — */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 600px 400px at 20% 10%, rgba(99, 102, 241, 0.06), transparent),
-                radial-gradient(ellipse 500px 500px at 80% 80%, rgba(103, 232, 249, 0.04), transparent);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* — Dot grid texture — */
+        /* ── Dot grid background ── */
         body::after {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
             background-size: 24px 24px;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* — Header — */
-        .pp-header {
-            position: sticky;
+        /* ── Nav ── */
+        nav {
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(6, 6, 15, 0.8);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 0;
-        }
-
-        .pp-header-inner {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 0 32px;
             display: flex;
             align-items: center;
-            gap: 14px;
+            justify-content: space-between;
+            padding: 16px 40px;
+            background: rgba(6,6,15,0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
         }
-
-        .pp-logo {
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .nav-brand img {
             width: 36px;
             height: 36px;
             border-radius: 10px;
         }
-
-        .pp-brand {
+        .nav-brand span {
             font-family: 'Syne', sans-serif;
             font-weight: 700;
             font-size: 1.2rem;
-            background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .pp-header-tag {
-            margin-left: auto;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            padding: 4px 12px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        /* — Hero — */
-        .pp-hero {
-            position: relative;
-            z-index: 1;
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 80px 32px 40px;
-            text-align: center;
-        }
-
-        .pp-hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .pp-hero h1 span {
-            background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .pp-hero .pp-subtitle {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            max-width: 580px;
-            margin: 0 auto 24px;
-        }
-
-        .pp-effective {
-            display: inline-block;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            padding: 6px 16px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            letter-spacing: 0.04em;
-        }
-
-        /* — Content — */
-        .pp-content {
-            position: relative;
-            z-index: 1;
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 20px 32px 100px;
-        }
-
-        /* — Table of Contents — */
-        .pp-toc {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px 32px;
-            margin-bottom: 48px;
-        }
-
-        .pp-toc-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 16px;
-        }
-
-        .pp-toc ol {
-            list-style: none;
-            counter-reset: toc;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 32px;
-        }
-
-        .pp-toc li {
-            counter-increment: toc;
-        }
-
-        .pp-toc li a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.92rem;
+        .nav-links {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 4px 0;
-            transition: color 0.2s;
+            list-style: none;
         }
+        .nav-links a {
+            color: var(--subtle);
+            text-decoration: none;
+            font-size: 0.88rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); background: rgba(99,102,241,0.08); }
+        .nav-links .nav-cta {
+            color: #fff;
+            background: var(--accent);
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .nav-links .nav-cta:hover { background: #4f46e5; }
 
-        .pp-toc li a::before {
-            content: counter(toc, decimal-leading-zero);
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 160px 32px 80px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 500px;
+            background: radial-gradient(ellipse at center, rgba(99,102,241,0.12), transparent 70%);
+            pointer-events: none;
+        }
+        .hero-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 28px;
+            margin-bottom: 32px;
+            filter: drop-shadow(0 0 50px rgba(99,102,241,0.35));
+            position: relative;
+        }
+        h1 {
             font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            font-size: 0.75rem;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--subtle);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(99,102,241,0.3);
+        }
+        .btn-primary:hover { background: #4f46e5; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(99,102,241,0.4); }
+        .btn-outline {
+            background: transparent;
+            color: var(--subtle);
+            border: 1px solid var(--border);
+        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--text); background: rgba(99,102,241,0.06); }
+
+        /* ── Chips row ── */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 48px;
+        }
+        .chip {
+            font-size: 0.8rem;
+            padding: 6px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--subtle);
+            background: rgba(99,102,241,0.04);
+        }
+
+        /* ── Section layout ── */
+        section {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 32px;
+        }
+        .section-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             color: var(--accent);
-            opacity: 0.5;
-            min-width: 22px;
+            margin-bottom: 12px;
         }
-
-        .pp-toc li a:hover {
-            color: var(--accent-cyan);
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
         }
-
-        /* — Sections — */
-        .pp-section {
+        .section-desc {
+            color: var(--subtle);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 600px;
             margin-bottom: 48px;
         }
 
-        .pp-section h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
+        /* ── App Preview ── */
+        .app-preview {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto 0;
+            padding: 0 32px;
+        }
+        .preview-frame {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,102,241,0.08);
+        }
+        .preview-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            background: rgba(99,102,241,0.04);
             border-bottom: 1px solid var(--border);
+        }
+        .preview-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #1e1e35;
+        }
+        .preview-dot:nth-child(1) { background: #ef4444; }
+        .preview-dot:nth-child(2) { background: #eab308; }
+        .preview-dot:nth-child(3) { background: #22c55e; }
+        .preview-body {
+            display: flex;
+            min-height: 340px;
+        }
+        .preview-sidebar {
+            width: 180px;
+            border-right: 1px solid var(--border);
+            padding: 20px 0;
+            flex-shrink: 0;
+        }
+        .preview-sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            transition: all 0.2s;
+        }
+        .preview-sidebar-item.active {
+            color: var(--text);
+            background: rgba(99,102,241,0.08);
+            border-left: 2px solid var(--accent);
+        }
+        .preview-sidebar-item svg { width: 16px; height: 16px; opacity: 0.6; }
+        .preview-sidebar-item.active svg { opacity: 1; }
+        .preview-content {
+            flex: 1;
+            padding: 24px;
+        }
+        .preview-content-header {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+        .preview-card {
+            background: rgba(99,102,241,0.04);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+        }
+        .preview-card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .preview-card-subject {
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+        .preview-card-label {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .label-urgent { background: rgba(239,68,68,0.15); color: #f87171; }
+        .label-client { background: rgba(99,102,241,0.15); color: #818cf8; }
+        .label-newsletter { background: rgba(34,197,94,0.15); color: #4ade80; }
+        .preview-card-from {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        .preview-progress {
+            margin-top: 16px;
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
-        .pp-section h2 .pp-num {
+        .preview-progress-bar {
+            flex: 1;
+            height: 5px;
+            background: #1e1e35;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .preview-progress-fill {
+            width: 72%;
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #4f46e5, #818cf8, #67e8f9);
+        }
+        .preview-progress-text {
             font-size: 0.75rem;
-            color: var(--accent);
-            background: rgba(99, 102, 241, 0.1);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-
-        .pp-section h3 {
-            font-size: 1.05rem;
+            color: #818cf8;
             font-weight: 600;
-            color: var(--text-primary);
-            margin: 20px 0 10px;
         }
 
-        .pp-section p {
-            color: var(--text-secondary);
-            margin-bottom: 14px;
-            font-size: 0.95rem;
+        /* ── Features Grid ── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 28px;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            border-color: rgba(99,102,241,0.25);
+            box-shadow: 0 8px 40px rgba(99,102,241,0.08);
+            transform: translateY(-3px);
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        .fi-indigo { background: rgba(99,102,241,0.12); }
+        .fi-cyan { background: rgba(103,232,249,0.12); }
+        .fi-green { background: rgba(34,197,94,0.12); }
+        .fi-amber { background: rgba(245,158,11,0.12); }
+        .fi-rose { background: rgba(244,63,94,0.12); }
+        .fi-violet { background: rgba(167,139,250,0.12); }
+        .feature-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: var(--subtle);
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
-        .pp-section ul, .pp-section ol {
-            color: var(--text-secondary);
-            margin: 0 0 14px 20px;
-            font-size: 0.95rem;
+        /* ── How It Works ── */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            counter-reset: step;
         }
-
-        .pp-section li {
-            margin-bottom: 6px;
+        .step {
+            position: relative;
+            padding: 28px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            counter-increment: step;
         }
-
-        .pp-section li::marker {
+        .step::before {
+            content: counter(step);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(99,102,241,0.12);
             color: var(--accent);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .step h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .step p {
+            color: var(--subtle);
+            font-size: 0.88rem;
+            line-height: 1.6;
         }
 
-        /* — Highlight card — */
-        .pp-highlight {
-            background: rgba(99, 102, 241, 0.06);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin: 18px 0;
+        /* ── Privacy Banner ── */
+        .privacy-banner {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+        .privacy-inner {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 48px;
+            background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(103,232,249,0.04));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+        .privacy-inner svg {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            color: var(--cyan);
+        }
+        .privacy-inner h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .privacy-inner p {
+            color: var(--subtle);
+            font-size: 0.92rem;
+            line-height: 1.6;
         }
 
-        .pp-highlight.green {
-            background: rgba(34, 197, 94, 0.06);
-            border-color: rgba(34, 197, 94, 0.15);
+        /* ── CTA / Contact ── */
+        .cta {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 80px 32px 100px;
+        }
+        .cta::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, rgba(103,232,249,0.06), transparent 70%);
+            pointer-events: none;
+        }
+        .cta h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .cta p {
+            color: var(--subtle);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
         }
 
-        .pp-highlight p {
-            margin-bottom: 0;
+        /* ── Supports ── */
+        .supports {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
         }
-
-        .pp-highlight strong {
-            color: var(--text-primary);
-        }
-
-        /* — Scope table — */
-        .pp-scope-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
+        .supports-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--subtle);
             font-size: 0.9rem;
         }
+        .supports-item svg { width: 24px; height: 24px; }
 
-        .pp-scope-table th {
-            text-align: left;
-            padding: 12px 16px;
-            background: var(--bg-card);
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pp-scope-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-secondary);
-            vertical-align: top;
-        }
-
-        .pp-scope-table tr:last-child td { border-bottom: none; }
-
-        .pp-scope-table code {
-            font-size: 0.82rem;
-            background: rgba(99, 102, 241, 0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: var(--accent-cyan);
-            white-space: nowrap;
-        }
-
-        /* — Footer — */
-        .pp-footer {
+        /* ── Footer ── */
+        footer {
             position: relative;
             z-index: 1;
             text-align: center;
             padding: 32px;
             border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.82rem;
         }
-
-        .pp-footer a {
-            color: var(--accent);
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .footer-links a {
+            color: var(--muted);
             text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy {
+            color: var(--muted);
+            font-size: 0.78rem;
         }
 
-        .pp-footer a:hover { text-decoration: underline; }
-
-        /* — Responsive — */
-        @media (max-width: 640px) {
-            .pp-hero { padding: 60px 20px 30px; }
-            .pp-content { padding: 20px 20px 80px; }
-            .pp-toc ol { grid-template-columns: 1fr; }
-            .pp-header-inner { padding: 0 20px; }
-            .pp-header-tag { display: none; }
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            nav { padding: 14px 20px; }
+            .nav-links { gap: 4px; }
+            .nav-links a { padding: 8px 12px; font-size: 0.82rem; }
+            .hero { padding: 120px 20px 60px; }
+            .preview-sidebar { display: none; }
+            .privacy-inner { flex-direction: column; text-align: center; padding: 32px 24px; gap: 20px; }
+            section { padding: 60px 20px; }
+        }
+        @media (max-width: 480px) {
+            .hero-actions { flex-direction: column; align-items: center; }
+            .features-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .supports { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="pp-header">
-        <div class="pp-header-inner">
-            <img src="neuromail-logo.png" alt="NeuroMail" class="pp-logo">
-            <span class="pp-brand">NeuroMail</span>
-            <span class="pp-header-tag">Legal</span>
-        </div>
-    </header>
+    <!-- ── Nav ── -->
+    <nav>
+        <a href="#" class="nav-brand">
+            <img src="neuromail-logo.png" alt="NeuroMail">
+            <span>NeuroMail</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="#get-neuromail" class="nav-cta">Get NeuroMail</a></li>
+        </ul>
+    </nav>
 
-    <!-- Hero -->
-    <section class="pp-hero">
-        <h1>Privacy <span>Policy</span></h1>
-        <p class="pp-subtitle">NeuroMail is built on a simple principle: your email data never leaves your computer. Here's exactly how we handle your information.</p>
-        <span class="pp-effective">Effective: April 2, 2026</span>
+    <!-- ── Hero ── -->
+    <div class="hero">
+        <img src="neuromail-logo.png" alt="NeuroMail" class="hero-logo">
+        <h1>Your Email, <span class="gradient-text">Your AI.</span><br>100% Offline.</h1>
+        <p class="hero-sub">NeuroMail is an AI-powered desktop assistant that labels, drafts, tracks, and organizes your emails &mdash; entirely on your machine. No cloud. No subscriptions to AI services. Just your inbox, trained your way.</p>
+        <div class="hero-actions">
+            <a href="#get-neuromail" class="btn btn-primary">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Get NeuroMail
+            </a>
+            <a href="#features" class="btn btn-outline">Explore Features</a>
+        </div>
+        <div class="chips">
+            <span class="chip">Windows Desktop App</span>
+            <span class="chip">Gmail &amp; Outlook</span>
+            <span class="chip">Local AI Processing</span>
+            <span class="chip">Zero Cloud Dependency</span>
+        </div>
+    </div>
+
+    <!-- ── App Preview ── -->
+    <div class="app-preview">
+        <div class="preview-frame">
+            <div class="preview-bar">
+                <div class="preview-dot"></div>
+                <div class="preview-dot"></div>
+                <div class="preview-dot"></div>
+            </div>
+            <div class="preview-body">
+                <div class="preview-sidebar">
+                    <div class="preview-sidebar-item active">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                        Dashboard
+                    </div>
+                    <div class="preview-sidebar-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+                        Labels
+                    </div>
+                    <div class="preview-sidebar-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        Drafts
+                    </div>
+                    <div class="preview-sidebar-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Follow-ups
+                    </div>
+                    <div class="preview-sidebar-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                        Contacts
+                    </div>
+                    <div class="preview-sidebar-item">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                        Training Hub
+                    </div>
+                </div>
+                <div class="preview-content">
+                    <div class="preview-content-header">Smart Labels &mdash; Scan Results</div>
+                    <div class="preview-card">
+                        <div class="preview-card-row">
+                            <span class="preview-card-subject">Q2 Budget Review Required</span>
+                            <span class="preview-card-label label-urgent">Urgent</span>
+                        </div>
+                        <div class="preview-card-from">from: sarah.chen@company.com</div>
+                    </div>
+                    <div class="preview-card">
+                        <div class="preview-card-row">
+                            <span class="preview-card-subject">Project Alpha - Final Deliverables</span>
+                            <span class="preview-card-label label-client">Client</span>
+                        </div>
+                        <div class="preview-card-from">from: mike.ross@clientcorp.com</div>
+                    </div>
+                    <div class="preview-card">
+                        <div class="preview-card-row">
+                            <span class="preview-card-subject">Weekly Tech Digest #47</span>
+                            <span class="preview-card-label label-newsletter">Newsletter</span>
+                        </div>
+                        <div class="preview-card-from">from: digest@techweekly.com</div>
+                    </div>
+                    <div class="preview-progress">
+                        <div class="preview-progress-bar"><div class="preview-progress-fill"></div></div>
+                        <span class="preview-progress-text">72%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Features ── -->
+    <section id="features">
+        <p class="section-label">Features</p>
+        <h2 class="section-title">Everything your inbox needs.<br><span class="gradient-text">Nothing the cloud requires.</span></h2>
+        <p class="section-desc">Six AI-powered tools that learn your email patterns and work for you &mdash; all running locally on your machine.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon fi-indigo">
+                    <svg width="24" height="24" fill="none" stroke="#818cf8" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+                </div>
+                <h3>Smart Labels</h3>
+                <p>AI scans your inbox and suggests contextual labels &mdash; Urgent, Client, Newsletter, Invoice, and more. Review suggestions and apply with one click.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon fi-cyan">
+                    <svg width="24" height="24" fill="none" stroke="#67e8f9" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h3>Draft Generator</h3>
+                <p>Automatically generates reply drafts for emails that need a response. Supports Reply All with CC preservation. Edit, approve, or discard &mdash; you stay in control.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon fi-amber">
+                    <svg width="24" height="24" fill="none" stroke="#fbbf24" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3>Follow-up Detection</h3>
+                <p>Identifies emails that are waiting for a reply or action. Never miss a follow-up again. AI even drafts a suggested nudge for you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon fi-green">
+                    <svg width="24" height="24" fill="none" stroke="#4ade80" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <h3>Contact Extraction</h3>
+                <p>Scans email signatures using NLP to extract names, phone numbers, job titles, and companies. Build a contacts database from years of emails in minutes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon fi-rose">
+                    <svg width="24" height="24" fill="none" stroke="#fb7185" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <h3>Bulk Mailer</h3>
+                <p>Send personalized emails at scale. Import contacts from CSV or Excel, compose your template, and send batched emails directly through your own email account.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon fi-violet">
+                    <svg width="24" height="24" fill="none" stroke="#a78bfa" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                </div>
+                <h3>Training Hub</h3>
+                <p>Teach the AI your preferences. Train label categories, reply style, and follow-up priorities. The more you train, the smarter it gets &mdash; all stored locally.</p>
+            </div>
+        </div>
     </section>
 
-    <!-- Content -->
-    <main class="pp-content">
+    <!-- ── How It Works ── -->
+    <section id="how-it-works">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">Set up in minutes. <span class="gradient-text">Train over time.</span></h2>
+        <p class="section-desc">NeuroMail connects to your email account, runs AI locally, and keeps everything on your device.</p>
 
-        <!-- Table of Contents -->
-        <nav class="pp-toc">
-            <div class="pp-toc-title">Contents</div>
-            <ol>
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#data-collected">Data We Access</a></li>
-                <li><a href="#google-scopes">Google API Scopes</a></li>
-                <li><a href="#outlook">Microsoft Outlook Data</a></li>
-                <li><a href="#local-processing">Local-Only Processing</a></li>
-                <li><a href="#storage">Data Storage &amp; Encryption</a></li>
-                <li><a href="#no-sharing">No Data Sharing</a></li>
-                <li><a href="#ai-processing">AI &amp; Machine Learning</a></li>
-                <li><a href="#license">Licensing System</a></li>
-                <li><a href="#your-rights">Your Rights &amp; Data Deletion</a></li>
-                <li><a href="#children">Children's Privacy</a></li>
-                <li><a href="#changes">Policy Changes</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ol>
-        </nav>
-
-        <!-- 1. Overview -->
-        <section class="pp-section" id="overview">
-            <h2><span class="pp-num">01</span> Overview</h2>
-            <p>NeuroMail is a desktop email productivity application that uses on-device artificial intelligence to help you manage your inbox. The application runs entirely on your local computer.</p>
-            <div class="pp-highlight green">
-                <p><strong>Core Privacy Guarantee:</strong> NeuroMail processes all email data locally on your device. Your emails, contacts, drafts, and AI-generated content are never transmitted to, stored on, or accessible by any external server, cloud service, or third party — including us.</p>
+        <div class="steps">
+            <div class="step">
+                <h3>Install &amp; Sign In</h3>
+                <p>Download the Windows installer and sign in with your Gmail or Outlook account. Your credentials stay on your machine.</p>
             </div>
-        </section>
-
-        <!-- 2. Data We Access -->
-        <section class="pp-section" id="data-collected">
-            <h2><span class="pp-num">02</span> Data We Access</h2>
-            <p>When you connect your email account, NeuroMail accesses the following data through official APIs provided by Google and Microsoft:</p>
-            <ul>
-                <li><strong>Email messages</strong> — subject lines, sender/recipient addresses, body content, timestamps, and thread structure</li>
-                <li><strong>Email labels and folders</strong> — your existing organizational structure</li>
-                <li><strong>Contact information</strong> — names, email addresses, and phone numbers extracted from email signatures using on-device NLP</li>
-                <li><strong>Draft emails</strong> — for reading and creating draft responses</li>
-            </ul>
-            <p>All accessed data is processed and stored exclusively on your local machine. No email content is ever transmitted externally.</p>
-        </section>
-
-        <!-- 3. Google API Scopes -->
-        <section class="pp-section" id="google-scopes">
-            <h2><span class="pp-num">03</span> Google API Scopes</h2>
-            <p>NeuroMail requests the following Google OAuth 2.0 scopes to provide its features. Each scope is used for a specific, limited purpose:</p>
-            <table class="pp-scope-table">
-                <thead>
-                    <tr>
-                        <th>Scope</th>
-                        <th>Purpose</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>gmail.readonly</code></td>
-                        <td>Read your emails to analyze content, suggest labels, detect follow-ups requiring attention, and extract contact information from signatures — all processed locally on your device.</td>
-                    </tr>
-                    <tr>
-                        <td><code>gmail.send</code></td>
-                        <td>Send emails on your behalf only when you explicitly approve a draft reply, follow-up message, or bulk email campaign from within the application.</td>
-                    </tr>
-                    <tr>
-                        <td><code>gmail.modify</code></td>
-                        <td>Apply label changes to your emails when you approve AI-suggested labels, and manage draft states within your mailbox.</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="pp-highlight">
-                <p><strong>Limited Use Disclosure:</strong> NeuroMail's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+            <div class="step">
+                <h3>Scan Your Inbox</h3>
+                <p>Run your first scan. NeuroMail analyzes your emails locally using a built-in AI model &mdash; no data leaves your computer.</p>
             </div>
-        </section>
-
-        <!-- 4. Microsoft Outlook -->
-        <section class="pp-section" id="outlook">
-            <h2><span class="pp-num">04</span> Microsoft Outlook Data</h2>
-            <p>For Microsoft Outlook accounts, NeuroMail accesses your email data through the Microsoft Graph API using the following permissions:</p>
-            <ul>
-                <li><strong>Mail.ReadWrite</strong> — Read emails for analysis and create/modify drafts</li>
-                <li><strong>Mail.Send</strong> — Send approved replies and bulk emails</li>
-                <li><strong>User.Read</strong> — Retrieve your account profile information for display</li>
-            </ul>
-            <p>The same local-only processing guarantee applies to all Outlook data.</p>
-        </section>
-
-        <!-- 5. Local-Only Processing -->
-        <section class="pp-section" id="local-processing">
-            <h2><span class="pp-num">05</span> Local-Only Processing</h2>
-            <p>NeuroMail is architecturally designed to keep all data processing on your device:</p>
-            <ul>
-                <li><strong>AI models run locally</strong> — The language model (Phi-3.5 Mini) runs entirely on your CPU or GPU. No cloud AI services (OpenAI, Google AI, etc.) are used.</li>
-                <li><strong>NLP processing is local</strong> — Contact extraction, email classification, and reply analysis use on-device libraries (spaCy, sentence-transformers).</li>
-                <li><strong>No telemetry</strong> — NeuroMail does not collect usage analytics, crash reports, or behavioral data.</li>
-                <li><strong>No external API calls for email processing</strong> — The only network requests are: (1) authenticating with Gmail/Outlook via official OAuth, (2) fetching and sending emails through official APIs, and (3) license validation with our license server.</li>
-            </ul>
-        </section>
-
-        <!-- 6. Storage & Encryption -->
-        <section class="pp-section" id="storage">
-            <h2><span class="pp-num">06</span> Data Storage &amp; Encryption</h2>
-            <p>All application data is stored locally on your computer:</p>
-            <ul>
-                <li><strong>Database</strong> — SQLite databases stored in the application's local data directory, one per email account</li>
-                <li><strong>Authentication tokens</strong> — OAuth refresh tokens stored locally, encrypted with AES-256-GCM</li>
-                <li><strong>AI model files</strong> — Stored locally in the application directory (~2.4 GB)</li>
-                <li><strong>License data</strong> — License key and activation status stored locally using encrypted storage</li>
-            </ul>
-            <p>No data is stored on any remote server controlled by NeuroMail, with the sole exception of license activation records (see Section 9).</p>
-        </section>
-
-        <!-- 7. No Data Sharing -->
-        <section class="pp-section" id="no-sharing">
-            <h2><span class="pp-num">07</span> No Data Sharing</h2>
-            <div class="pp-highlight green">
-                <p><strong>We do not sell, share, transfer, or disclose your email data, contacts, drafts, or any AI-processed content to any third party — ever.</strong> This includes advertising networks, data brokers, analytics providers, and affiliated companies.</p>
+            <div class="step">
+                <h3>Review &amp; Approve</h3>
+                <p>Browse AI-generated labels, drafts, and follow-ups in a clean dashboard. Approve, edit, or dismiss each suggestion.</p>
             </div>
-            <p>The only data that leaves your device is:</p>
-            <ol>
-                <li>Emails you explicitly choose to send (via Gmail/Outlook's official send APIs)</li>
-                <li>Label changes you explicitly approve (via Gmail/Outlook's official modify APIs)</li>
-                <li>A license key validation request containing only your license key and a machine identifier (no email content)</li>
-            </ol>
-        </section>
+            <div class="step">
+                <h3>Train &amp; Improve</h3>
+                <p>Use the Training Hub to teach the AI your email habits. Over time, suggestions become increasingly personalized and accurate.</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- 8. AI & ML -->
-        <section class="pp-section" id="ai-processing">
-            <h2><span class="pp-num">08</span> AI &amp; Machine Learning</h2>
-            <p>NeuroMail uses artificial intelligence for:</p>
-            <ul>
-                <li><strong>Label suggestions</strong> — Analyzing email content to recommend organizational labels</li>
-                <li><strong>Draft generation</strong> — Creating reply drafts that match your writing tone and style</li>
-                <li><strong>Follow-up detection</strong> — Identifying sent emails that haven't received a response</li>
-                <li><strong>Contact extraction</strong> — Parsing email signatures for names, emails, and phone numbers</li>
-                <li><strong>Reply decision</strong> — Determining which emails warrant a response</li>
-            </ul>
-            <p>All AI models are open-source, run locally on your hardware, and are never fine-tuned on or transmit your data to external services. The training feature in NeuroMail adapts the model's behavior using your local feedback — this training data stays on your machine.</p>
-        </section>
+    <!-- ── Privacy Banner ── -->
+    <div class="privacy-banner">
+        <div class="privacy-inner">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4" stroke-width="2"/>
+            </svg>
+            <div>
+                <h3>Privacy by Architecture</h3>
+                <p>NeuroMail processes everything on your device using a local AI model. Your emails, contacts, and training data never leave your computer. No cloud APIs, no third-party AI services, no telemetry. Read our <a href="privacy.html" style="color: var(--cyan); text-decoration: underline;">Privacy Policy</a> for full details.</p>
+            </div>
+        </div>
+    </div>
 
-        <!-- 9. Licensing -->
-        <section class="pp-section" id="license">
-            <h2><span class="pp-num">09</span> Licensing System</h2>
-            <p>NeuroMail uses an online license activation system. The following minimal data is exchanged with our license server:</p>
-            <ul>
-                <li><strong>License key</strong> — Your purchased license key</li>
-                <li><strong>Machine identifier</strong> — A hardware-derived ID used to bind the license to your device</li>
-                <li><strong>Activation status</strong> — Whether the license is active, expired, or in trial</li>
-            </ul>
-            <p>The license server does <strong>not</strong> receive or have access to any email content, contacts, drafts, AI-generated text, or any other application data. License validation occurs once every 24 hours, with a 7-day offline grace period.</p>
-        </section>
+    <!-- ── Supported ── -->
+    <section style="padding-top: 0;">
+        <div class="supports">
+            <div class="supports-item">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="#EA4335"/>
+                </svg>
+                Gmail
+            </div>
+            <div class="supports-item">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="#0078D4"/>
+                </svg>
+                Outlook
+            </div>
+            <div class="supports-item">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="2" y="3" width="20" height="18" rx="2" stroke="#818cf8" stroke-width="1.5"/>
+                    <path d="M7 8h4v4H7zM13 8h4v1h-4zM13 11h4v1h-4zM7 14h10v1H7zM7 17h7v1H7z" fill="#818cf8" opacity="0.6"/>
+                </svg>
+                Windows Desktop
+            </div>
+            <div class="supports-item">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L3 7V12C3 16.55 6.84 20.74 12 22C17.16 20.74 21 16.55 21 12V7L12 2Z" stroke="#4ade80" stroke-width="1.5" fill="none"/>
+                    <path d="M9 12L11 14L15 10" stroke="#4ade80" stroke-width="2"/>
+                </svg>
+                100% Offline AI
+            </div>
+        </div>
+    </section>
 
-        <!-- 10. Your Rights -->
-        <section class="pp-section" id="your-rights">
-            <h2><span class="pp-num">10</span> Your Rights &amp; Data Deletion</h2>
-            <p>Because all data is stored locally on your device, you have full control:</p>
-            <ul>
-                <li><strong>View your data</strong> — All data is in SQLite databases accessible on your machine</li>
-                <li><strong>Delete your data</strong> — Uninstalling NeuroMail removes all application data, databases, AI models, and cached tokens from your device</li>
-                <li><strong>Revoke access</strong> — You can revoke NeuroMail's access to your Gmail account at any time via <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Google Account Permissions</a>, or revoke Outlook access via <a href="https://account.microsoft.com/privacy" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Microsoft Privacy Dashboard</a></li>
-                <li><strong>Disconnect accounts</strong> — Remove any connected email account from within NeuroMail's settings</li>
-                <li><strong>Deactivate license</strong> — Deactivate your license key to transfer it to a different machine</li>
-            </ul>
-        </section>
+    <!-- ── CTA / Contact ── -->
+    <div class="cta" id="get-neuromail">
+        <h2><span class="gradient-text">Ready to train</span> your inbox?</h2>
+        <p>NeuroMail is available as a Windows desktop application. Contact us to get your copy or learn more about licensing options.</p>
+        <div class="hero-actions">
+            <a href="mailto:support.neuromail@gmail.com" class="btn btn-primary">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Contact Us
+            </a>
+            <a href="privacy.html" class="btn btn-outline">Privacy Policy</a>
+        </div>
+    </div>
 
-        <!-- 11. Children -->
-        <section class="pp-section" id="children">
-            <h2><span class="pp-num">11</span> Children's Privacy</h2>
-            <p>NeuroMail is not intended for use by individuals under the age of 16. We do not knowingly process data from children.</p>
-        </section>
-
-        <!-- 12. Changes -->
-        <section class="pp-section" id="changes">
-            <h2><span class="pp-num">12</span> Policy Changes</h2>
-            <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated effective date. Continued use of NeuroMail after changes constitutes acceptance of the updated policy.</p>
-        </section>
-
-        <!-- 13. Contact -->
-        <section class="pp-section" id="contact">
-            <h2><span class="pp-num">13</span> Contact Us</h2>
-            <p>If you have questions about this privacy policy or NeuroMail's data practices, please contact us:</p>
-            <ul>
-                <li><strong>Email</strong>: <a href="mailto:support.neuromail@gmail.com" style="color: var(--accent-cyan);">support.neuromail@gmail.com</a></li>
-            </ul>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="pp-footer">
-        <p>&copy; 2026 NeuroMail. All rights reserved. &nbsp;|&nbsp; <a href="#">Back to top</a></p>
-        <p style="margin-top: 6px; font-size: 0.75rem;">Train Your Inbox.</p>
+    <!-- ── Footer ── -->
+    <footer>
+        <div class="footer-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="mailto:support.neuromail@gmail.com">Contact</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 NeuroMail. Train Your Inbox.</p>
     </footer>
 
 </body>
